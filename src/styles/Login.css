@@ -1,0 +1,98 @@
+.login-container {
+    position: relative;
+    top:50px;
+    margin: 0px auto;
+    width: 380px;
+    max-height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 44px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.login-form-container {
+    width: 100%;
+}
+
+a {
+    color: grey;
+    margin: 0px 6px;
+}
+
+.form-title {
+    font-size: 30px;
+    width: 100%;
+    text-align: center;
+
+}
+
+.m-2 {
+    margin: 20px 4px;
+}
+
+.form {
+    width: 100%;
+}
+
+.text-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-google,
+.btn-signin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px auto;
+    width: 100%;
+    background: white;
+    border: solid grey 1px;
+    border-radius: 8px;
+    text-align: center;
+    padding: 0px;
+    font-weight: bold;
+    font-size: large;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+
+
+.btn-signin {
+    height: 50px;
+    background: black;
+    color: white;
+}
+
+
+.btn-signin:hover {
+    color: black;
+    background: white;
+}
+
+.btn-google>img {
+    margin: 8px;
+}
+
+.form-input {
+    border: none;
+    background: #F7F7F7;
+    padding: 16px;
+    border-radius: 8px;
+    width: 90%;
+    margin: 4px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px inset;
+}
+
+.form-input:focus,
+.form-input:focus {
+    outline: none;
+}
+
+span {
+    font-size: 20px;
+}
