@@ -3,8 +3,8 @@
     display: grid;
     grid-template-columns: 1fr 3fr;
     overflow: hidden;
-    height: calc(100vh-70px);
-    width : 100vw
+    height: 600px;
+    width : 100%;
 }
 
 .user-detail{
@@ -85,14 +85,152 @@
 }
 
 .message-form input{
-    width : 40vu;
+    width : 40vw;
     margin : 0px 10px 10px;
     padding : 10px;
     border-radius: 5px;
     outline: none;
     border:none;
-
+    background-color: lightgrey;
 }
 .message-form .send-btn{
-    margin-top:-10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: 2px auto;
+   width: 100%;
+   background: white;
+   border: solid grey 1px;
+   border-radius: 4px;
+   text-align: center;
+   padding: 10px;
+   font-weight: bold;
+   border: none;
+   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+   background:black;
+   color :white;
+}
+.messages{
+    height :500px;
+    overflow-y: auto;
+    border-bottom: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.message-wrapper{
+    margin-top:5px;
+    padding: 10px 5px;
+}
+
+.message-wrapper img{
+    width:100%;
+    border-radius: 5px;
+}
+
+.message-wrapper p{
+    padding: 10px;
+    display : inline-block;
+    max-width : 50%;
+    text-align: left;
+    border-radius:5px;
+}
+
+.message-wrapper small{
+    display: inline-block;
+    margin-top: 15px;
+    opacity : 0.8;
+}
+
+.message-wrapper  .own{
+    text-align: right;
+}
+
+.me{
+    background: rgb(3, 3, 249);
+    color: white;
+    text-align: left;
+}
+
+.friend{
+    background-color: lightgray;
+}
+
+.selected-user {
+    background: grey;
+}
+
+.truncate {
+    font-size: 14px;
+    white-space: nowrap;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 10px;
+}
+
+.truncate strong {
+    margin-right: 10px;
+}
+
+.unread {
+    margin-left: 10px;
+    background: var(--color-3);
+    color: white;
+    padding: 2px 4px;
+    border-radius: 10px;
+}
+
+.sm-screen {
+    display: none;
+}
+
+
+@media screen and (max-width: 767px) {
+    .home-container {
+        grid-template-columns: 2fr 3fr;
+    }
+
+    .message-form {
+        left: 3%;
+        right: 0;
+        bottom: 5px;
+    }
+
+    .message-wrapper p {
+        max-width: 75%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .home-container {
+        grid-template-columns: 1fr 5fr;
+    }
+
+    .user-wrapper {
+        display: none;
+    }
+
+    .sm-container {
+        padding: 10px 0px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .sm-screen {
+        display: inline-block;
+    }
+
+    .message-form input {
+        width: 50vw;
+        margin: 0px 10px;
+    }
+
+    .message-form .btn {
+        margin: 0px;
+    }
+
+    .message-wrapper p {
+        max-width: 100%;
+    }
 }
