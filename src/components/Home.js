@@ -1,52 +1,47 @@
-import React from "react";
-import glogo from "../images/icon-google.png";
-
+import React ,{useEffect,useState} from "react";
+import { database,auth } from "../firebaseconfig";
+import { collection,query,where,onSnapshot } from "firebase/firestore";
+import User from "./User";
+import MessageForm from "./MessageForm";
 export default function Home() {
+  const [users,setUsers] = useState();
+  const[chat,setChat] = useState(null);
+  useEffect(() =>{
+     const usersRef = collection(database,'users')
+    const q = query(usersRef,where('uid','not-in',[auth.currentUser.uid]))
+    const unsub = onSnapshot(q,( querySnapshot ) =>{
+      let users = [];
+      querySnapshot.forEach(doc =>{
+          users.push(doc.data())
+      })
+      setUsers(users);
+    });
+    return () => unsub();
+  },[])
+  const selectUser = (user) =>{
+    setChat(user);
+    console.log(user);
+  }  
   return (
-    <div className="login-container">  
-    This is home 
-      <div className="login-form-container">
-        <form action className="form">
-          <div className="m-2 text-center">
-            <span className="form-title">Login With</span>
+    <div className="home-container">
+      <div className="users-container">
+        {users?.map((user) => (
+          <User key={user.uid} user={user} selectUser={selectUser} />
+        ))}
+      </div>
+      <div className="messages-container">
+        {chat ? (
+          <>
+            <div className="messages-user">
+              <h3>{chat.name}</h3>
+            </div>
+            <MessageForm />
+          </>
+        ) : (
+          <div>
+            <h3 className="no-conv">Select a user to Start converstation</h3>
           </div>
-          <div className="m-2">
-            <button type="button" className="btn-google">
-              <img src={glogo} alt="" /> Google
-            </button>
-          </div>
-          <div className="m-2">
-            <span>Username</span>
-          </div>
-          <div className="m-2">
-            <input
-              type="text"
-              name="username"
-              defaultValue
-              className="form-input"
-            />
-          </div>
-          <div className="m-2">
-            <span className="m-2">Password</span>
-            <a href="#">Forgot?</a>
-          </div>
-          <div className="m-2">
-            <input
-              type="password"
-              name="password"
-              className="form-input"
-            />
-          </div>
-          <div className="m-2">
-            <button type="submit" className="btn-signin">
-              Log In
-            </button>
-          </div>
-          <div className="m-2">
-            <span>Not a User?</span>
-            <a href="#">SignUp</a>
-          </div>
-        </form>
+        )}
       </div>
     </div>
   );

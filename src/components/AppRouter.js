@@ -6,18 +6,36 @@ import Notfound from "./Notfound"
 import Profile from "./Profile"
 import SignUp from "./Signup";
 import Reset from "./Reset"
-import Home from "./Home";
+import Landing from "./Landing";
 import Navbar from "./Navbar";
-
+import Home from "./Home";
+import ProtectedRoute from "./ProtectedRoute"
 export default function AppRouter(props) {
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/" element={<Landing />} />
+        <Route
+          exact
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
         <Route exact path="/login" element={<Login />} />
-        <Route exact path="/signUp" element={<SignUp />} />
-        <Route exact path="/profile" element={<Profile />} />
+        <Route exact path="/signup" element={<SignUp />} />
+        <Route
+          exact
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
         <Route exact path="/forgot-password" element={<Forgot />} />
         <Route exact path="/reset-password" element={<Reset />} />
         <Route exact path="*" element={<Notfound />} />

@@ -1,21 +1,23 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
-import {auth} from '../firebaseconfig'
+import { NavLink, Link, useNavigate } from "react-router-dom";
+import {auth,database} from '../firebaseconfig'
+import {signOut} from 'firebase/auth'
+import {updateDoc,doc} from 'firebase/firestore'
+import { useContext } from "react";
+import { AuthContext,useAuth } from "../context/auth";
 function Navbar() {
+
+  const  curruser  = useAuth();
+  const navigate = useNavigate();
+  const handleSignOut = async () => {
+    await updateDoc(doc(database,'users',auth.currentUser.uid),{
+      isOnline:false,
+    })
+    await signOut(auth);
+    navigate("/login");
+  };
+
   return (
-    // <nav>
-    //   <ul>
-    //     <li>
-    //       <NavLink to="/">Home</NavLink>
-    //     </li>
-    //     <li>
-    //       <NavLink to="/Login">Login</NavLink>
-    //     </li>
-    //     <li>
-    //       <NavLink to="/SignUp">SignUp</NavLink>
-    //     </li>
-    //   </ul>
-    // </nav>
     <nav className="nav">
       <input type="checkbox" id="nav__checkbox" className="nav__checkbox" />
       <label htmlFor="nav__checkbox" className="nav__toggle">
@@ -34,24 +36,34 @@ function Navbar() {
             </svg>
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/">Home</NavLink>
-        </li>
-        <li>
-          <NavLink to="/Login">Login</NavLink>
-        </li>
-        <li>
-          <NavLink to="/SignUp">SignUp</NavLink>
-        </li>
-        <li>
-          <NavLink to="/profile">profile</NavLink>
-        </li>
-        <li>
-          <NavLink to="/forgot-password">forgot</NavLink>
-        </li>
-        <li>
-          <NavLink to="/reset-password">reset</NavLink>
-        </li>
+        {
+          !curruser ?(
+          <>
+          <li>
+            <NavLink to="/login">Login</NavLink>
+          </li>
+          <li>
+            <NavLink to="/signup">SignUp</NavLink>
+          </li>
+          <li>
+            <NavLink to="/forgot-password">forgot</NavLink>
+          </li>
+        </>):(
+        <>
+          <li>
+            <NavLink to="/home">Home</NavLink>
+          </li>
+          <li>
+            <NavLink to="/profile">profile</NavLink>
+          </li>
+          <li>
+            <NavLink to="/reset-password">reset</NavLink>
+          </li>
+          <li onClick={handleSignOut}>
+            <NavLink to="/" >Logout</NavLink>
+          </li>
+        </>
+        )}
       </ul>
     </nav>
   );

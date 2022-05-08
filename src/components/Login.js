@@ -48,7 +48,7 @@ export default function Login(){
          error: null,
          loading: false,
        });
-       navigate("/");
+       navigate("/home");
      } catch (err) {
        setData({ ...data, error: err.message, loading: false });
      }

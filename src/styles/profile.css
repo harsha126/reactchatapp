@@ -1,0 +1,52 @@
+.profile-container {
+    position: relative;
+    top: 50px;
+    margin: 0px auto;
+    width: 380px;
+    max-height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 44px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.img-container{
+    position:relative;
+    margin-right : 20px;
+}
+
+.img-container > img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid black;
+    transition: 0.3s ease-in-out all;
+}
+
+.text-container{
+    flex-grow :1;
+}
+
+.text-container>h3{
+    text-align: left;
+}
+
+.img-container:hover > img{
+    opacity: 0.4;
+}
+
+.img-container:hover .overlay{
+    opacity: 1;
+}
+
+.overlay{
+    transition:0.3s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
