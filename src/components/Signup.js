@@ -68,11 +68,7 @@ export default function SignUp() {
           <div className="m-2 text-center">
             <span className="form-title">Sign In With</span>
           </div>
-          <div className="m-2">
-            <button type="button" className="btn-google">
-              <img src={glogo} alt="ggoog" /> Google
-            </button>
-          </div>
+          <hr className="hr"/>
           <div className="m-2">
             <span>Email</span>
           </div>

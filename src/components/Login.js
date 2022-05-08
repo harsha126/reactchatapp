@@ -62,11 +62,7 @@ export default function Login(){
             <div className="m-2 text-center">
               <span className="form-title">Login With</span>
             </div>
-            <div className="m-2">
-              <button type="button" className="btn-google">
-                <img src={glogo} alt="icon" /> Google
-              </button>
-            </div>
+            <hr className='hr'/>
             <div className="m-2">
               <span>Email</span>
             </div>
