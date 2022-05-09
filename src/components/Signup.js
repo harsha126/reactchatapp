@@ -66,7 +66,7 @@ export default function SignUp() {
       <div className="login-form-container">
         <form action className="form" onSubmit={handleSubmit}>
           <div className="m-2 text-center">
-            <span className="form-title">Sign In With</span>
+            <span className="form-title">Sign Up With</span>
           </div>
           <hr className="hr"/>
           <div className="m-2">
